@@ -1,17 +1,21 @@
 const express = require("express");
 const router = express.Router();
+const sanitize = require("../configuration/sanitize");
+console.log(sanitize);
 
-const User = require("../Models/User");
 const UserProject = require("../Models/UserProject");
-//################### UserPoject Create #########
+//################### UserProject Create #########
 router.post("/userProject/create", async (req, res) => {
   try {
     const newUserProject = new UserProject({
-      user: req.body.user,
-      typeGood: req.body.typeGood
+      typeGood: sanitize.typeGood[req.body.typeGood]
     });
-    await newUserProject.save();
-    res.json({ message: "new userProject created" });
+    if (!newUserProject.typeGood) {
+      res.json({ message: "invalid request" });
+      return;
+    }
+    const project = await newUserProject.save();
+    res.json({ message: "new userProject created", id: project._id });
   } catch (error) {
     res.json({ message: error.message });
   }
@@ -21,6 +25,7 @@ router.post("/userProject/create", async (req, res) => {
 router.post("/userProject/update", async (req, res) => {
   try {
     let id = req.query.id;
+    let typeGood = req.body.typeGood;
     let stateGood = req.body.stateGood;
     let usageGood = req.body.usageGood;
     let userSituation = req.body.userSituation;
@@ -29,7 +34,11 @@ router.post("/userProject/update", async (req, res) => {
     let workAmount = req.body.workAmount;
     let notaryAmount = req.body.notaryAmount;
     let projectAmount = req.body.projectAmount;
+    let userEmail = req.body.userEmail;
     let userProjectToUpdate = await UserProject.findById(id);
+    if (typeGood) {
+      userProjectToUpdate.typeGood = typeGood;
+    }
     if (stateGood) {
       userProjectToUpdate.stateGood = stateGood;
     }
@@ -53,6 +62,9 @@ router.post("/userProject/update", async (req, res) => {
     }
     if (projectAmount) {
       userProjectToUpdate.projectAmount = projectAmount;
+    }
+    if (userEmail) {
+      userProjectToUpdate.userEmail = userEmail;
     }
     await userProjectToUpdate.save();
     res.json(userProjectToUpdate);

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const UserProject = mongoose.model("UserFile", {
+const UserProject = mongoose.model("UserProject", {
   typeGood: String,
   stateGood: String,
   usageGood: String,
@@ -10,10 +10,8 @@ const UserProject = mongoose.model("UserFile", {
   workAmount: Number,
   notaryAmount: Number,
   projectAmount: Number,
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User"
-  }
+  userEmail: String,
+  userProjectCreateAt: Date
 });
 
 module.exports = UserProject;

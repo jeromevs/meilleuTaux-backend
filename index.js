@@ -9,11 +9,7 @@ mongoose.connect("mongodb://localhost/meilleurtaux", {
   useUnifiedTopology: true
 });
 
-require("./Models/User");
 require("./Models/UserProject");
-
-const userRoutes = require("./routes/userRoute");
-app.use(userRoutes);
 
 const userProjectRoutes = require("./routes/userProjectRoute");
 app.use(userProjectRoutes);

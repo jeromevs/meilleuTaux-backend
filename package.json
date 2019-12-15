@@ -1,13 +1,13 @@
 {
-  "name": "back-end-meilleurtaux",
+  "name": "meilleurTaux-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "backend du project de certification MeilleurTaux",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Jerome Vanseveren",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",

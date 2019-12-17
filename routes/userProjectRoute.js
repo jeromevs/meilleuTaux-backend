@@ -93,7 +93,7 @@ router.get("/userProject/:id", async (req, res) => {
     const id = req.params.id;
     console.log(req.params.id);
     console.log(req.params);
-    const existingUserProject = await userProject.findById(id);
+    const existingUserProject = await UserProject.findById(id);
 
     if (existingUserProject) {
       res.json(existingUserProject);

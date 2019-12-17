@@ -88,7 +88,7 @@ router.post("/userProject/update", async (req, res) => {
 });
 
 //###################### GET USERPROJECT################
-router.get("userProject/:id", async (req, res) => {
+router.get("/userProject/:id", async (req, res) => {
   try {
     const id = req.params.id;
     console.log(req.params.id);

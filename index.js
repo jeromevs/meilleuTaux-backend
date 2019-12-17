@@ -26,5 +26,5 @@ app.all("/*", (req, res, next) => {
 app.use(userProjectRoutes);
 
 app.listen(process.env.PORT, () => {
-  console.log("Server Ready");
+  console.log("Server Ready" + process.env.PORT);
 });

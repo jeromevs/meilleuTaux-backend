@@ -59,21 +59,24 @@ router.post("/userProject/update", async (req, res) => {
     if (userSituation) {
       userProjectToUpdate.userSituation = userSituation;
     }
-    if (locationGood) {
-      userProjectToUpdate.locationGood = locationGood;
+    if (locationGood.country) {
+      userProjectToUpdate.locationGood.country = locationGood.country;
     }
-    // if (goodAmount) {
-    //   userProjectToUpdate.goodAmount = goodAmount;
-    // }
-    // if (workAmount) {
-    //   userProjectToUpdate.workAmount = workAmount;
-    // }
-    // if (notaryAmount) {
-    //   userProjectToUpdate.notaryAmount = notaryAmount;
-    // }
-    // if (projectAmount) {
-    //   userProjectToUpdate.projectAmount = projectAmount;
-    // }
+    if (locationGood.city) {
+      userProjectToUpdate.locationGood.city = locationGood.city;
+    }
+    if (amount.good) {
+      userProjectToUpdate.amount.good = amount.good;
+    }
+    if (amount.work) {
+      userProjectToUpdate.amount.work = amount.work;
+    }
+    if (amount.notary) {
+      userProjectToUpdate.amount.notary = amount.notary;
+    }
+    if (amount.project) {
+      userProjectToUpdate.amount.project = amount.project;
+    }
     if (userEmail) {
       userProjectToUpdate.userEmail = userEmail;
     }
@@ -81,6 +84,22 @@ router.post("/userProject/update", async (req, res) => {
     res.json(userProjectToUpdate);
   } catch (error) {
     res.json({ message: error.message });
+  }
+});
+
+//###################### GET USERPROJECT################
+router.get("userProject/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const existingUserProject = await userProject.findById(id);
+
+    if (existingUserProject) {
+      res.json(existingUserProject);
+    } else {
+      res.status(404).json({ message: "project not found" });
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
   }
 });
 

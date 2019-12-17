@@ -10,10 +10,10 @@ const UserProject = mongoose.model("UserProject", {
     city: String
   },
   amount: {
-    goodAmount: Number,
-    workAmount: Number,
-    notaryAmount: Number,
-    projectAmount: Number
+    good: Number,
+    work: Number,
+    notary: Number,
+    project: Number
   },
   userEmail: String,
   userProjectCreateAt: Date

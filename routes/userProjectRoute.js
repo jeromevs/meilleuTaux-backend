@@ -29,11 +29,22 @@ router.post("/userProject/update", async (req, res) => {
     let stateGood = req.body.stateGood;
     let usageGood = req.body.usageGood;
     let userSituation = req.body.userSituation;
-    let locationGood = req.body.locationGood;
-    let goodAmount = req.body.goodAmount;
-    let workAmount = req.body.workAmount;
-    let notaryAmount = req.body.notaryAmount;
-    let projectAmount = req.body.projectAmount;
+    if (!req.body.locationGood) {
+      req.body.locationGood = {};
+    }
+    let locationGood = {
+      country: req.body.locationGood.country,
+      city: req.body.locationGood.city
+    };
+    if (!req.body.amount) {
+      req.body.amount = {};
+    }
+    let amount = {
+      goodAmount: req.body.amount.goodAmount,
+      workAmount: req.body.amount.workAmount,
+      notaryAmount: req.body.amount.notaryAmount,
+      projectAmount: req.body.amount.projectAmount
+    };
     let userEmail = req.body.userEmail;
     let userProjectToUpdate = await UserProject.findById(id);
     if (typeGood) {
@@ -51,18 +62,18 @@ router.post("/userProject/update", async (req, res) => {
     if (locationGood) {
       userProjectToUpdate.locationGood = locationGood;
     }
-    if (goodAmount) {
-      userProjectToUpdate.goodAmount = goodAmount;
-    }
-    if (workAmount) {
-      userProjectToUpdate.workAmount = workAmount;
-    }
-    if (notaryAmount) {
-      userProjectToUpdate.notaryAmount = notaryAmount;
-    }
-    if (projectAmount) {
-      userProjectToUpdate.projectAmount = projectAmount;
-    }
+    // if (goodAmount) {
+    //   userProjectToUpdate.goodAmount = goodAmount;
+    // }
+    // if (workAmount) {
+    //   userProjectToUpdate.workAmount = workAmount;
+    // }
+    // if (notaryAmount) {
+    //   userProjectToUpdate.notaryAmount = notaryAmount;
+    // }
+    // if (projectAmount) {
+    //   userProjectToUpdate.projectAmount = projectAmount;
+    // }
     if (userEmail) {
       userProjectToUpdate.userEmail = userEmail;
     }

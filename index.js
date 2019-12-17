@@ -16,8 +16,15 @@ mongoose.connect(process.env.MONGODB_URI, {
 require("./Models/UserProject");
 
 const userProjectRoutes = require("./routes/userProjectRoute");
+app.all("/*", (req, res, next) => {
+  if (req.method === "OPTIONS") {
+    res.status(200).end();
+  } else {
+    next();
+  }
+});
 app.use(userProjectRoutes);
 
-app.listen(4000, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server Ready");
 });

@@ -5,11 +5,16 @@ const UserProject = mongoose.model("UserProject", {
   stateGood: String,
   usageGood: String,
   userSituation: String,
-  locationGood: Number,
-  goodAmount: Number,
-  workAmount: Number,
-  notaryAmount: Number,
-  projectAmount: Number,
+  locationGood: {
+    country: String,
+    city: String
+  },
+  amount: {
+    goodAmount: Number,
+    workAmount: Number,
+    notaryAmount: Number,
+    projectAmount: Number
+  },
   userEmail: String,
   userProjectCreateAt: Date
 });

@@ -4,6 +4,20 @@ const sanitize = require("../configuration/sanitize");
 console.log(sanitize);
 
 const UserProject = require("../Models/UserProject");
+//################### UserProject Save #########
+router.post("/userProject/save", async (req, res) => {
+  try {
+    const newUserProject = new UserProject(req.body);
+    const project = await newUserProject.save();
+    if (project) {
+      res.status(201).json({ message: "userProject saved" });
+    } else {
+      res.status(400).json({ message: "invalid format" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 //################### UserProject Create #########
 router.post("/userProject/create", async (req, res) => {
   try {
@@ -91,8 +105,6 @@ router.post("/userProject/update", async (req, res) => {
 router.get("/userProject/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    console.log(req.params.id);
-    console.log(req.params);
     const existingUserProject = await UserProject.findById(id);
 
     if (existingUserProject) {

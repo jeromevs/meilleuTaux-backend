@@ -38,10 +38,11 @@ router.get("/userProjects", async (req, res) => {
 });
 
 //###################### GET USERPROJECT################
-router.get("/userProject/:id", async (req, res) => {
+router.get("/userProject/:fileId", async (req, res) => {
   try {
-    const id = req.params.id;
-    const existingUserProject = await UserProject.findById(id);
+    const existingUserProject = await UserProject.findOne({
+      fileId: req.params.fileId
+    });
 
     if (existingUserProject) {
       res.json(existingUserProject);

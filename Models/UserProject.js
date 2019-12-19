@@ -15,7 +15,8 @@ const UserProject = mongoose.model("UserProject", {
     notary: Number,
     project: Number
   },
-  userEmail: String
+  userEmail: String,
+  fileId: String
 });
 
 module.exports = UserProject;

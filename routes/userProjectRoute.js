@@ -8,10 +8,13 @@ const UserProject = require("../Models/UserProject");
 //################### UserProject Save #########
 router.post("/userProject/save", async (req, res) => {
   try {
+    req.body.fileId = shortid.generate();
     const newUserProject = new UserProject(req.body);
     const project = await newUserProject.save();
     if (project) {
-      res.status(201).json({ message: "userProject saved" });
+      res
+        .status(201)
+        .json({ message: "userProject saved", fileId: req.body.fileId });
     } else {
       res.status(400).json({ message: "invalid format" });
     }

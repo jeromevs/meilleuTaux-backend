@@ -15,8 +15,7 @@ const UserProject = mongoose.model("UserProject", {
     notary: Number,
     project: Number
   },
-  userEmail: String,
-  userProjectCreateAt: Date
+  userEmail: String
 });
 
 module.exports = UserProject;

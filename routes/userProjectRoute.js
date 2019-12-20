@@ -70,4 +70,22 @@ router.get("/userProject/:fileId", async (req, res) => {
   }
 });
 
+//################ POST USERPROJECT DELETE #############
+router.post("/userProject/delete/:id", async (req, res) => {
+  try {
+    const userProjectToDelete = await UserProject.findOne({
+      fileId: req.params.fileId
+    });
+
+    if (userProjectToDelete) {
+      await userProjectToDelete.remove();
+      res.json({ success: "userProject successfully deleted" });
+    } else {
+      res.status(404).json({ message: "project not found" });
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
 module.exports = router;

@@ -21,7 +21,7 @@ router.post("/userProject/save", async (req, res) => {
     const data = {
       from: "Mailgun Sandbox <postmaster@" + DOMAIN + ">",
       to: req.body.userEmail,
-      subject: "hello",
+      subject: "Votre dossier Meilleur Taux: " + req.body.fileId,
       text: `Testing some Mailgun awesomness!` + req.body.typeGood
     };
     mg.messages().send(data, function(error, body) {

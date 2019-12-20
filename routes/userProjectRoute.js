@@ -71,7 +71,7 @@ router.get("/userProject/:fileId", async (req, res) => {
 });
 
 //################ POST USERPROJECT DELETE #############
-router.post("/userProject/delete/:id", async (req, res) => {
+router.post("/userProject/delete/:fileId", async (req, res) => {
   try {
     const userProjectToDelete = await UserProject.findOne({
       fileId: req.params.fileId

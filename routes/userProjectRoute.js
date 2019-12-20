@@ -41,7 +41,7 @@ router.post("/userProject/save", async (req, res) => {
 //###################### GET ALL USERPROJECTS################
 router.get("/userProjects", async (req, res) => {
   try {
-    const existingUserProjects = await UserProject.find().toArray();
+    const existingUserProjects = await UserProject.find();
 
     if (existingUserProjects) {
       res.json(existingUserProjects);

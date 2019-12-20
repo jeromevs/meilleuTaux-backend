@@ -1,4 +1,11 @@
 const express = require("express");
+const mailgun = require("mailgun-js");
+
+const API_KEY = process.env.MAILGUN_API_KEY;
+const DOMAIN = process.env.MAILGUN_DOMAIN;
+
+const mg = mailgun({ apiKey: API_KEY, domain: DOMAIN });
+
 const router = express.Router();
 const sanitize = require("../configuration/sanitize");
 const shortid = require("shortid");
@@ -11,6 +18,15 @@ router.post("/userProject/save", async (req, res) => {
     req.body.fileId = shortid.generate();
     const newUserProject = new UserProject(req.body);
     const project = await newUserProject.save();
+    const data = {
+      from: "Mailgun Sandbox <postmaster@" + DOMAIN + ">",
+      to: req.body.userEmail,
+      subject: "hello",
+      text: `Testing some Mailgun awesomness!` + req.body.typeGood
+    };
+    mg.messages().send(data, function(error, body) {
+      console.log(body);
+    });
     if (project) {
       res
         .status(201)

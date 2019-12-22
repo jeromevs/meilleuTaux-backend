@@ -16,7 +16,24 @@ const UserProject = require("../Models/UserProject");
 router.post("/userProject/save", async (req, res) => {
   try {
     req.body.fileId = shortid.generate();
-    const newUserProject = new UserProject(req.body);
+    const newUserProject = new UserProject({
+      typeGood: req.body.typeGood,
+      stateGood: req.body.stateGood,
+      usageGood: req.body.usageGood,
+      userSituation: req.body.userSituation,
+      locationGood: {
+        country: req.body.locationGood.country,
+        city: req.body.locationGood.city
+      },
+      amount: {
+        good: req.body.amount.good,
+        work: req.body.amount.work,
+        notary: req.body.amount.notary,
+        project: req.body.amount.project
+      },
+      userEmail: req.body.userEmail,
+      fileId: req.body.fileId
+    });
     const project = await newUserProject.save();
     const data = {
       from: "Mailgun Sandbox <postmaster@" + DOMAIN + ">",
@@ -62,6 +79,7 @@ router.post("/userProject/save", async (req, res) => {
     };
     mg.messages().send(data, function(error, body) {
       console.log(body);
+      console.log(error);
     });
     if (project) {
       res

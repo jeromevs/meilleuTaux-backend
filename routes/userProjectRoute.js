@@ -71,7 +71,7 @@ router.post("/userProject/save", async (req, res) => {
         " €" +
         "\n" +
         "Localise a: " +
-        newUserProject.location.city +
+        newUserProject.locationGood.city +
         "\n" +
         "L'equipe de meilleur taux se tient a votre disposition pour toute question supplementaire," +
         "\n" +

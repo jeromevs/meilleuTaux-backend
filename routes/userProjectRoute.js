@@ -56,7 +56,7 @@ router.post("/userProject/save", async (req, res) => {
         "Localise a: " +
         req.body.location.city +
         "\n" +
-        "L'equipe de meilleur taus se tient a votre disposition pour toute question supplementaire," +
+        "L'equipe de meilleur taux se tient a votre disposition pour toute question supplementaire," +
         "\n" +
         "A tres bientot."
     };

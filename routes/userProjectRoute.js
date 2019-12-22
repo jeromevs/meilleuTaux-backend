@@ -62,12 +62,12 @@ router.post("/userProject/save", async (req, res) => {
         newUserProject.amount.work +
         " €" +
         "\n" +
-        "Le montant des frais de notaire extimes: " +
-        newUserProject.notary +
+        "Le montant des frais de notaire estimes: " +
+        newUserProject.amount.notary +
         " €" +
         "\n" +
         "Pour un budget total de: " +
-        newUserProject.project +
+        newUserProject.amount.project +
         " €" +
         "\n" +
         "Localise a: " +

@@ -89,6 +89,7 @@ router.post("/userProject/save", async (req, res) => {
       res.status(400).json({ message: "invalid format" });
     }
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: error.message });
   }
 });

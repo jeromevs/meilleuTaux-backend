@@ -20,44 +20,44 @@ router.post("/userProject/save", async (req, res) => {
     const project = await newUserProject.save();
     const data = {
       from: "Mailgun Sandbox <postmaster@" + DOMAIN + ">",
-      to: req.body.userEmail,
-      subject: "Votre dossier Meilleur Taux: " + req.body.fileId,
+      to: newUserProject.userEmail,
+      subject: "Votre dossier Meilleur Taux: " + newUserProject.fileId,
       text:
         "Bonjour," +
         "\n" +
         "Nous vous confirmons la reception de votre demande  sous le numero: " +
-        req.body.fileId +
-        "\n\n" +
-        "Type du bien: " +
-        req.body.typeGood +
-        "\n" +
-        "L'etat du bien: " +
-        req.body.stateGood +
-        "\n" +
-        "Votre situation locative actuelle: " +
-        req.body.userSituation +
-        "\n" +
-        "Le montant de votre future acquisition: " +
-        req.body.amount.good +
-        " €" +
-        "\n" +
-        "Le montant des travaux: " +
-        req.body.amount.work +
-        " €" +
-        "\n" +
-        "Le montant des frais de notaire extimes: " +
-        req.body.amount.notary +
-        " €" +
-        "\n" +
-        "Pour un budget total de: " +
-        req.body.amount.project +
-        " €" +
-        "\n" +
-        "Localise a: " +
-        req.body.location.city +
-        "\n" +
-        "L'equipe de meilleur taux se tient a votre disposition pour toute question supplementaire," +
-        "\n" +
+        newUserProject.fileId +
+        // "\n\n" +
+        // "Type du bien: " +
+        // req.body.typeGood +
+        // "\n" +
+        // "L'etat du bien: " +
+        // req.body.stateGood +
+        // "\n" +
+        // "Votre situation locative actuelle: " +
+        // req.body.userSituation +
+        // "\n" +
+        // "Le montant de votre future acquisition: " +
+        // req.body.amount.good +
+        // " €" +
+        // "\n" +
+        // "Le montant des travaux: " +
+        // req.body.amount.work +
+        // " €" +
+        // "\n" +
+        // "Le montant des frais de notaire extimes: " +
+        // req.body.amount.notary +
+        // " €" +
+        // "\n" +
+        // "Pour un budget total de: " +
+        // req.body.amount.project +
+        // " €" +
+        // "\n" +
+        // "Localise a: " +
+        // req.body.location.city +
+        // "\n" +
+        // "L'equipe de meilleur taux se tient a votre disposition pour toute question supplementaire," +
+        // "\n" +
         "A tres bientot."
     };
     mg.messages().send(data, function(error, body) {
